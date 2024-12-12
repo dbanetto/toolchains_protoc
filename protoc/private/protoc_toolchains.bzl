@@ -39,6 +39,15 @@ toolchain(
     # Bazel does not follow this attribute during analysis, so the referenced repo
     # will only be fetched if this toolchain is selected.
     toolchain = "@{user_repository_name}.{platform}//:prebuilt_protoc_toolchain",
+    toolchain_type = "@rules_proto//proto:toolchain_type",
+)
+
+toolchain(
+    name = "{platform}_toolchain_protobuf",
+    exec_compatible_with = {compatible_with},
+    # Bazel does not follow this attribute during analysis, so the referenced repo
+    # will only be fetched if this toolchain is selected.
+    toolchain = "@{user_repository_name}.{platform}//:prebuilt_protoc_toolchain",
     toolchain_type = "@protobuf//bazel/private:proto_toolchain_type",
 )
 """.format(
